@@ -1,0 +1,46 @@
+{%load static %}
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title>Employee Registration</title>
+      <link rel="stylesheet" type="text/css" href="{%static 'EmployeeData/css/style.css' %} " >
+    </head>
+    <body>
+		<script src="{%static 'EmployeeData/validateEmpRegstForm.js' %}"></script>
+
+		<div class="topnav">
+			<a href="{%url 'logout' %}"><font color="red">Log out</font></a>
+			<a class="active" href="#home" name="user"> Log In : {{request.user.username }} </a>
+				
+			<a href="{%url 'empData' %}" >Registered Employee List</a>
+			<a href="{%url 'EmpReg' %}" >HOME</a>
+		</div>
+
+		<div class="header">
+	     	<h2>Employee Registration Form</h2>
+	  	</div>
+			<form name="myForm" onsubmit="return validateForm()" method="post" action= ' {% url 'SaveEmpData' %} '> {% csrf_token %}
+		<div class="input-group">
+			<label><i>Employee Name:<font color="red">*<span id="uname"></span></font></i></label>
+			<input type="text" name="emp_name" placeholder="FirstName LastName" >
+		</div>
+		<div class="input-group">
+			<label><i>Email Address:<font color="red">*<span id="email1"></span></font></i></label>
+			<input type="text" name="email" >
+		</div>
+	 	<div class="input-group">
+			<label><i>Phone Number:<font color="red">*<span id="mob_no"></span></font></i></label>
+			<input type="text" name="mob_no" >
+		</div>
+		<div class="input-group">
+			<label><i>Department:</i></label>
+			<input type="text" name="department" value="" >
+		</div>
+		<div class="input-group">
+			<button type="submit" name="login" class="btn"><b>Submit</b></button>
+		</div>
+		
+		</form>
+	
+    </body>
+</html>

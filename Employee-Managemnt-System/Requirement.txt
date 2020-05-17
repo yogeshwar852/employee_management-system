@@ -1,0 +1,2 @@
+python verion=3.7
+Django version=2.2

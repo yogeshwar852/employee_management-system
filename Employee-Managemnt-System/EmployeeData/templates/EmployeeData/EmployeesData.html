@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>EmployeeData</title>
+
+   <link rel="stylesheet" type="text/css" href="{%static 'EmployeeData/css/style.css' %} " >
+</head>
+
+  <body>
+    <div class="topnav">
+        <a href="{%url 'logout' %}"><font color="red">Log out</font></a>
+        <a class="active" href="#home" name="user"> Log In : {{request.user.username }} </a>
+        <a href="{%url 'empData' %}" >Registered Employee List</a>
+					<a href="{%url 'EmpReg' %}" >HOME</a>
+    </div>
+    
+    <br>
+    <table align="center"><center> <h1>Employee  Data</h1></center><br>
+    <tr>
+      <th>Serial Number</th>
+      <th>Employee Name</th>
+      <th>Email</th>
+      <th>Phone Number</th>
+      <th> Department</th>
+    </tr>
+    {% for stored_empData in Emp_savedData %}
+    <tr>
+      <td>{{ forloop.counter }}</td>
+     <td>{{ stored_empData.Emp_name}}</td>
+      <td>{{ stored_empData.Emp_email}} </td>
+      <td>{{ stored_empData.Emp_phonNO}}</td> 
+      <td>{{ stored_empData.Emp_dept}}</td>
+        <td><a class="btn btn-sm btn-info" href="{% url 'update_order' stored_empData.id %}">Update</a></td>
+        <td><a class="btn btn-sm btn-danger" href="{% url 'delete_order' stored_empData.id %}">Delete</a></td>
+    </tr>
+    {% endfor %}
+  
+    </table>
+
+  </body>
+</html>
